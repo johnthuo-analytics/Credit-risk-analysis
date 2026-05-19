@@ -8,4 +8,4 @@ Client_ID,Age,Income,Loan_Amount,Credit_Score,Branch,Loan_Officer,Loan_Cycle,Out
 1007,45,85000,250000,760,Mombasa,John Kariuki,5,70000,180000,Paid
 1008,33,40000,140000,610,Nairobi,Mary Wanjiku,3,80000,60000,Paid
 1009,30,28000,125000,560,Kisumu,James Mwangi,2,100000,15000,Default
-1010,38,76000,220000,730,Nakuru,Peter Kimani,4,60000,160000,Paid
+1010,38,76000,220000,740,Nakuru,Peter Kimani,4,60000,160000,Paid
