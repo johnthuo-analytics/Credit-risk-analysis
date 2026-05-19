@@ -1,12 +1,38 @@
-Dataset files for credit risk analysis project.
-Client_ID,Age,Income,Loan_Amount,Credit_Score,Branch,Loan_Officer,Loan_Cycle,Outstanding_Balance,Total_Paid,Loan_Status
-1001,25,45000,120000,650,Nairobi,John Kariuki,2,60000,60000,Paid
-1002,31,38000,150000,590,Kiambu,Mary Wanjiku,3,120000,30000,Default
-1003,40,60000,200000,720,Nairobi,Peter Mwangi,1,0,200000,Paid
-1004,28,30000,80000,500,Nakuru,Jane Njeri,2,50000,30000,Default
-1005,35,55000,180000,680,Mombasa,John Kariuki,4,90000,90000,Paid
-1006,29,42000,110000,610,Kiambu,Mary Wanjiku,1,20000,90000,Paid
-1007,45,70000,250000,750,Nairobi,Peter Mwangi,5,0,250000,Paid
-1008,33,39000,140000,560,Nakuru,Jane Njeri,2,100000,40000,Default
-1009,27,47000,100000,630,Mombasa,John Kariuki,1,0,100000,Paid
-1010,38,52000,160000,600,Kiambu,Mary Wanjiku,3,80000,80000,Default
+# Credit Risk Analysis Project
+
+## Overview
+This project analyzes customer loan data to predict credit risk and identify potential loan defaults using data analysis and machine learning techniques.
+
+## Dataset Description
+The dataset contains financial and customer information including:
+
+- Client_ID: Unique identifier
+- Age: Borrower age
+- Income: Monthly income
+- Loan_Amount: Loan amount issued
+- Credit_Score: Customer credit rating
+- Branch: Loan issuing branch
+- Loan_Officer: Officer handling the loan
+- Loan_Cycle: Number of previous loans
+- Outstanding_Balance: Remaining unpaid amount
+- Total_Paid: Amount already repaid
+- Loan_Status: Target variable (Paid or Default)
+
+## Objective
+To predict whether a customer will default or fully repay a loan.
+
+## Tools Used
+- Python
+- Pandas
+- Matplotlib
+- Scikit-learn
+
+## Workflow
+1. Data Cleaning
+2. Exploratory Data Analysis
+3. Feature Analysis
+4. Machine Learning Model (Logistic Regression)
+5. Model Evaluation
+
+## Target Variable
+Loan_Status (Paid / Default)
