@@ -28,8 +28,13 @@ LEAKAGE_COLS = ["Outstanding_Balance", "Total_Paid"]
 
 RANDOM_STATE = 42
 TEST_SIZE = 0.2
-CV_FOLDS = 5
+CV_FOLDS = 3
 
 # Illustrative business costs for threshold selection (relative units).
 COST_FALSE_NEGATIVE = 5.0   # approve a loan that defaults (loss of principal)
 COST_FALSE_POSITIVE = 1.0   # reject a loan that would have repaid (lost interest)
+
+# Probability-based reporting bands. The approval/review threshold is a separate
+# business decision calibrated to assumed error costs; do not conflate the two.
+RISK_LOW_MAX = 0.10
+RISK_MEDIUM_MAX = 0.25

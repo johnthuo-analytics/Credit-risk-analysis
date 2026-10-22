@@ -29,7 +29,7 @@ def main():
                                            method="predict_proba")[:, 1].round(4)
     df["Risk_Band"] = pd.cut(df["Predicted_PD"], [-1, 0.10, 0.25, 1.01],
                              labels=["Low", "Medium", "High"]).astype(str)
-    df["Recommended_Action"] = np.where(df["Predicted_PD"] >= t, "Review / Decline", "Approve")
+    df["Recommended_Action"] = np.where(df["Predicted_PD"] >= t, "Review", "Eligible for review")
     df["Age_Band"] = pd.cut(df["Age"], [0, 25, 35, 45, 55, 120],
                             labels=["<=25", "26-35", "36-45", "46-55", "56+"]).astype(str)
     df["Score_Band"] = pd.cut(df["Credit_Score"], [0, 500, 580, 670, 740, 900],

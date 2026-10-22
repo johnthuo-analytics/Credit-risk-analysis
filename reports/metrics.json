@@ -1,19 +1,19 @@
 {
   "best_model": "Logistic Regression",
   "decision": {
-    "threshold": 0.16999999999999996,
-    "recall": 0.8106796116504854,
-    "precision": 0.35456475583864117,
-    "approval_rate": 0.529,
-    "bad_rate_in_approved": 0.07372400756143667
+    "threshold": 0.18999999999999997,
+    "recall": 0.7766990291262136,
+    "precision": 0.3755868544600939,
+    "approval_rate": 0.574,
+    "bad_rate_in_approved": 0.08013937282229965
   },
   "importance": {
-    "Credit_Score": 0.174,
-    "Loan_to_Income": 0.0856,
-    "Loan_Cycle": 0.0081,
-    "Age": 0.0029,
-    "Branch": 0.0022,
-    "Loan_Amount": 0.0015,
-    "Income": -0.0004
+    "Credit_Score": 0.1685,
+    "Loan_to_Income": 0.0971,
+    "Loan_Cycle": 0.0102,
+    "Branch": 0.0028,
+    "Loan_Amount": 0.001,
+    "Age": 0.0006,
+    "Income": -0.0007
   }
 }

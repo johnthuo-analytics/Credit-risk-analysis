@@ -16,6 +16,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import StratifiedKFold, cross_val_predict, cross_validate, train_test_split
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
+from sklearn.impute import SimpleImputer
 
 from . import config as C
 from .data import clean, load_raw
@@ -24,8 +25,14 @@ from .evaluate import best_threshold, plot_diagnostics, summary_metrics, thresho
 
 def build_preprocessor() -> ColumnTransformer:
     return ColumnTransformer([
-        ("num", StandardScaler(), C.NUMERIC_FEATURES),
-        ("cat", OneHotEncoder(handle_unknown="ignore"), C.CATEGORICAL_FEATURES),
+        ("num", Pipeline([
+            ("imputer", SimpleImputer(strategy="median", add_indicator=True)),
+            ("scale", StandardScaler()),
+        ]), C.NUMERIC_FEATURES),
+        ("cat", Pipeline([
+            ("imputer", SimpleImputer(strategy="most_frequent")),
+            ("onehot", OneHotEncoder(handle_unknown="ignore")),
+        ]), C.CATEGORICAL_FEATURES),
     ])
 
 
@@ -37,7 +44,7 @@ def candidate_models() -> dict:
             n_estimators=300, min_samples_leaf=20, class_weight=None,
             n_jobs=-1, random_state=rs),
         "Gradient Boosting": GradientBoostingClassifier(
-            n_estimators=200, max_depth=3, learning_rate=0.05, subsample=0.8, random_state=rs),
+            n_estimators=25, max_depth=2, learning_rate=0.05, subsample=0.8, random_state=rs),
     }
 
 
@@ -84,7 +91,7 @@ def main():
     plot_diagnostics(y_te, p_test, best_name, C.FIG_DIR / "model_diagnostics.png")
 
     imp = permutation_importance(best_pipe, X_te, y_te, scoring="roc_auc",
-                                 n_repeats=10, random_state=C.RANDOM_STATE, n_jobs=-1)
+                                 n_repeats=3, random_state=C.RANDOM_STATE, n_jobs=1)
     imp_df = pd.Series(imp.importances_mean, index=features).sort_values()
     ax = imp_df.plot.barh(figsize=(7, 4), color="#2a6f97")
     ax.set(title=f"Permutation importance ({best_name})", xlabel="Drop in test AUC")

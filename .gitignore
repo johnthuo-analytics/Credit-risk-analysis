@@ -6,5 +6,6 @@ venv/
 .venv/
 .pytest_cache/
 .DS_Store
-# Real client data must never be committed
+# Never commit raw loan-level data. The demo file is generated locally by `make data`.
+data/raw/loans.csv
 data/raw/loans_real.csv

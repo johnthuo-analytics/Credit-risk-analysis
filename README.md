@@ -40,7 +40,7 @@ I wanted one project that answers both, and that is honest about the traps along
 |---|---|
 | Clean | Validate columns, fix types, fill gaps, add a loan-to-income ratio |
 | Monitor | Default rate, outstanding balance, collection efficiency and concentration by branch; ranked list of partly-paid accounts to chase |
-| Model | Logistic Regression vs Random Forest vs Gradient Boosting, 5-fold cross-validation, untouched hold-out test set |
+| Model | Logistic Regression vs Random Forest vs Gradient Boosting, 3-fold cross-validation, untouched hold-out test set |
 | Decide | A cost-based approve/decline threshold, tuned on training data only |
 | Export | Scored loan-level tables for Power BI |
 | Serve | A small Streamlit app to score an applicant |
@@ -53,7 +53,7 @@ I wanted one project that answers both, and that is honest about the traps along
 | Gradient Boosting | 0.738 | 0.761 | 0.523 | 0.420 |
 | Random Forest | 0.739 | 0.758 | 0.515 | 0.395 |
 
-At the chosen threshold the model catches about 81% of loans that would default while approving about 53% of applicants. The default rate among approved loans is about 7%, against 20.6% across the whole book.
+At the illustrative cost-based threshold (about 0.19), the model identifies about 77.7% of defaults (recall), classifies about 57.4% of the hold-out loans as below the review threshold, and the observed default rate in that group is about 8.0%, versus 20.6% across the full demo portfolio. Precision is about 37.6%, so many flagged accounts would not default. These are synthetic-data results, not evidence of real-world lending performance.
 
 The simplest model won, and I kept it. In lending, a model you can explain to a credit committee is worth more than an extra point of accuracy.
 
@@ -72,7 +72,7 @@ git clone https://github.com/johnthuo-analytics/Credit-risk-analysis.git
 cd Credit-risk-analysis
 pip install -r requirements.txt
 
-python -m src.generate_data      # skip if you have your own data/raw/loans.csv
+python -m src.generate_data      # creates synthetic data only when you need a demo
 python -m src.eda                # EDA charts
 python -m src.train              # model comparison + saved model
 python -m src.export_powerbi     # tables for Power BI
@@ -81,7 +81,7 @@ python -m pytest -q              # tests
 python -m streamlit run app/app.py
 ```
 
-Prefer a shortcut? `make all` runs the whole pipeline.
+Prefer a shortcut? `make all` runs the whole pipeline. `make data` will not overwrite an existing `data/raw/loans.csv`.
 
 **Windows tips**
 - Use `python -m pytest` and `python -m streamlit` instead of `pytest` / `streamlit`, since pip may not add them to your PATH.
@@ -89,7 +89,7 @@ Prefer a shortcut? `make all` runs the whole pipeline.
 
 ## Using your own data
 
-Replace `data/raw/loans.csv` with a file that has the columns in [`data/README.md`](data/README.md), then re-run the commands above. Keep real client data out of public repos. The `.gitignore` is set up to help, but check before you push.
+Place a properly authorized, de-identified file at `data/raw/loans.csv` with the columns in [`data/README.md`](data/README.md), then re-run the pipeline. The generated demo CSV is intentionally not committed; `python -m src.generate_data` creates it locally. The path is ignored by Git, but always inspect `git status` and your staged files before pushing. Never upload real borrower data to this public repository.
 
 ## Project layout
 
@@ -111,10 +111,10 @@ Credit-risk-analysis/
 ## Limitations and what I'd do next
 
 - This is synthetic data, so real-world performance will differ. Treat the numbers as a demonstration of the method.
-- Add SHAP explanations so each decline can be explained to an individual applicant.
+- Add local/global explainability, with human review and appropriate adverse-action explanations before any real-world use.
 - Build a Weight-of-Evidence scorecard that turns probabilities into familiar credit scores.
-- Check fairness across age groups and other segments.
-- Validate over time (train on older loans, test on newer ones) once loan dates are available.
+- Check fairness and potential proxy effects across legally and ethically relevant segments; do not use demo findings to make real lending decisions.
+- Validate over time (train on older loans, test on newer ones) once reliable origination and outcome dates are available.\n- Review data quality and out-of-range values; conflicting duplicate borrower IDs and invalid target labels now fail validation instead of being silently accepted.
 - Monitor for drift after deployment and recalibrate regularly.
 
 ## License
