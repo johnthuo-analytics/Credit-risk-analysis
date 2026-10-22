@@ -1,0 +1,19 @@
+{
+  "best_model": "Logistic Regression",
+  "decision": {
+    "threshold": 0.16999999999999996,
+    "recall": 0.8106796116504854,
+    "precision": 0.35456475583864117,
+    "approval_rate": 0.529,
+    "bad_rate_in_approved": 0.07372400756143667
+  },
+  "importance": {
+    "Credit_Score": 0.174,
+    "Loan_to_Income": 0.0856,
+    "Loan_Cycle": 0.0081,
+    "Age": 0.0029,
+    "Branch": 0.0022,
+    "Loan_Amount": 0.0015,
+    "Income": -0.0004
+  }
+}

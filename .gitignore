@@ -1,5 +1,10 @@
 __pycache__/
-.ipynb_checkpoints/
 *.pyc
+.ipynb_checkpoints/
 .env
 venv/
+.venv/
+.pytest_cache/
+.DS_Store
+# Real client data must never be committed
+data/raw/loans_real.csv

@@ -1,0 +1,8 @@
+Feature,Importance
+Credit_Score,0.174
+Loan_to_Income,0.0856
+Loan_Cycle,0.0081
+Age,0.0029
+Branch,0.0022
+Loan_Amount,0.0015
+Income,-0.0004

@@ -1,0 +1,15 @@
+{
+  "name": "Credit Risk Navy",
+  "dataColors": ["#1d3557", "#2a6f97", "#c8553d", "#6a994e", "#e9b44c", "#8d99ae", "#457b9d", "#a8dadc"],
+  "background": "#ffffff",
+  "foreground": "#1d3557",
+  "tableAccent": "#1d3557",
+  "good": "#6a994e",
+  "neutral": "#e9b44c",
+  "bad": "#c8553d",
+  "textClasses": {
+    "title": {"fontFace": "Segoe UI Semibold", "fontSize": 14, "color": "#1d3557"},
+    "label": {"fontFace": "Segoe UI", "fontSize": 10, "color": "#4a4a4a"},
+    "callout": {"fontFace": "Segoe UI Semibold", "fontSize": 28, "color": "#1d3557"}
+  }
+}
